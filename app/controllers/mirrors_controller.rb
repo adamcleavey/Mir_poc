@@ -69,6 +69,6 @@ class MirrorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mirror_params
-      params.require(:mirror).permit(:source, :frequency, :last_updated, :name, :notes, :mirrored_url)
+      params.require(:mirror).permit(:source, :frequency, :last_updated, :name, :notes, :mirrored_url, :health)
     end
 end
