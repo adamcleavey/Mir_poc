@@ -18,7 +18,13 @@
   <dd><%= @mirror.frequency %></dd>
 	
   <dt>Health:</dt>
-  <dd><%= @mirror.health %></dd>
+  <dd>
+		<% if @mirror.health? %>
+			<span class="label label-success">Healthy</span>
+		<% else %>
+			<span class="label label-danger">Warning</span>
+		<% end %>
+	</dd>
 
   <dt>Last updated:</dt>
   <dd><%= @mirror.last_updated %></dd>

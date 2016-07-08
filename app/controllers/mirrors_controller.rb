@@ -24,7 +24,10 @@ class MirrorsController < ApplicationController
   # POST /mirrors
   # POST /mirrors.json
   def create
+    
+    # Dynamically add last_updated and health
     @mirror = Mirror.new(mirror_params)
+    @mirror.health = true
 
     respond_to do |format|
       if @mirror.save
@@ -40,6 +43,7 @@ class MirrorsController < ApplicationController
   # PATCH/PUT /mirrors/1
   # PATCH/PUT /mirrors/1.json
   def update
+    @mirror.last_updated = DateTime.now
     respond_to do |format|
       if @mirror.update(mirror_params)
         format.html { redirect_to @mirror, notice: 'Mirror was successfully updated.' }
@@ -69,6 +73,6 @@ class MirrorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mirror_params
-      params.require(:mirror).permit(:source, :frequency, :last_updated, :name, :notes, :mirrored_url, :health)
+      params.require(:mirror).permit(:source, :frequency, :last_updated, :name, :notes, :mirrored_url, :health, :filename, :format)
     end
 end

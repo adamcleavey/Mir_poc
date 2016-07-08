@@ -22,7 +22,13 @@
     <tbody>
       <%= content_tag_for(:tr, @mirrors) do |mirror| %>
 				<td><%= mirror.name %></td>
-				<td><%= mirror.health %></td>
+				<td>
+					<% if mirror.health? %>
+						<span class="label label-success">Healthy</span>
+					<% else %>
+						<span class="label label-danger">Warning</span>
+					<% end %>
+				</td>
         <td><%= mirror.last_updated %></td>
         <td><%= link_to 'Show', mirror %></td>
         <td><%= link_to 'Edit', edit_mirror_path(mirror) %></td>
