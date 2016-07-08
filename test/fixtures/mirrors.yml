@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source: MyString
+  frequency: 1
+  last_updated: 2016-07-08 11:18:34
+  name: MyString
+  notes: MyText
+  mirrored_url: MyString
+
+two:
+  source: MyString
+  frequency: 1
+  last_updated: 2016-07-08 11:18:34
+  name: MyString
+  notes: MyText
+  mirrored_url: MyString

@@ -1,0 +1,56 @@
+<%= form_for(@mirror, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @mirror.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@mirror.errors.count, "error") %> prohibited this mirror from being saved:</h4>
+
+      <ul>
+      <% @mirror.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :source, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :source, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, "Frequency (m)", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :frequency, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_updated, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.datetime_select :last_updated, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :notes, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :notes, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :mirrored_url, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :mirrored_url, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

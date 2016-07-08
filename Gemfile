@@ -17,6 +17,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'bootstrap-generators'
+gem 'record_tag_helper'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
