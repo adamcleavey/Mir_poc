@@ -1,18 +1,26 @@
 require 'open-uri'
+require 'net/http'
 
 class Mirror < ApplicationRecord
   validates :format,
       :inclusion  => { :in => [ 'JSON', 'XML' ],
       :message    => "%{value} is not a valid format. Currently, only JSON and XML are supported." }
-  before_save :update_timestamp, :create_filename, :create_mirrored_url
-  #after_save :refresh
+  before_save :create_filename, :create_mirrored_url, :check_mirror_health
+  after_save :refresh, :update_timestamp
   
   def refresh
-    @mirror = Mirror.find(:params[:id])
-    uri = URI(@mirror.source)
-    open('test.json', 'wb') do |file|
-      file << open(uri).read
+    if self.health?
+      uri = URI(self.source)
+      open(self.filename, 'wb') do |file|
+        file << open(uri).read
+      end
     end
+  end
+  
+  def check_mirror_health
+    uri = URI(self.source)
+    res = Net::HTTP.get_response(uri)
+    self.health = res.is_a?(Net::HTTPSuccess)
   end
   
   protected
